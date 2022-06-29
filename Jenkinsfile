@@ -6,15 +6,15 @@ pipeline {
   stages {
     stage("Maven Build") {
     	when {
-	    branch "develop"
-	}
+	      branch "develop"
+	    }
       steps {
         sh "mvn package"
       }
      }
      stage("SonarQube") {
         when {
-            branch "develop"
+          branch "develop"
         }
       steps {
         echo "sonarqube analyisis..."
@@ -22,7 +22,7 @@ pipeline {
     }
     stage("Nexus") {
         when {
-            branch "develop"
+          branch "develop"
         }
       steps {
         echo "uploading artifacts to nexus..."
@@ -30,7 +30,7 @@ pipeline {
     }
     stage("Deploy To QA") {
         when {
-            branch "qa"
+          branch "qa"
         }
       steps {
         echo "deploying to qa server..."
@@ -38,7 +38,7 @@ pipeline {
     }
     stage("Deploy To Prod") {
         when {
-            branch "master"
+          branch "master"
         }
       steps {
         echo "deploying to master server..."
